@@ -5,7 +5,7 @@ import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DashboarPage } from "./Pages/Dashboard/DashboarPage";
 import {NotFound} from "./Pages/NotFound"
-import { LoginPage } from "./LoginPage";
+import { LoginPage } from "../src/LoginPage/LoginPage";
 
 
 export const AuthContext = createContext();
