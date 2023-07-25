@@ -5,7 +5,7 @@ import { AuthContext } from '../../src/index';
 import axios from 'axios'
 import { useContext, useState } from 'react';
 import '../LoginPage/LoginStyles.css'
-
+import logo from '../assets/mmLogo.png'
 import {
   MDBBtn,
   MDBContainer,
@@ -86,11 +86,13 @@ export const LoginPage = () => {
 
                 <MDBCol col='6' className="mb-5">
                   <div className="d-flex flex-column ms-5">
-
+                    
                     <div className="text-center">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                        style={{ width: '185px' }} alt="logo" />
-                      <h4 className="mt-1 mb-5 pb-1">Welcome to Manglar Manager!</h4>
+                    <h4 className="text-muted">Welcome to..</h4>
+                      <img src={logo} className="img-fluid rounded" style={{ width: 500 }} />
+                      <br></br>
+                      <p></p>
+
                       <br></br>
                       <a className="text-muted">The New Way to Experience Work!</a>
                       <p>Log in With Your Given Account</p>

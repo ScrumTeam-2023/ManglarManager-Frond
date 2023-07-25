@@ -81,6 +81,7 @@ export const UserTable = ({ user, getU }) => {
                         <th scope='col'>Last Name</th>
                         <th scope='col'>Username</th>
                         <th scope='col'>email Address</th>
+                        <th scope='col'>PID</th>
                         <th scope='col'>Contact</th>
                         <th scope='col'>Age</th>
                         <th scope='col'>Role</th>
@@ -91,7 +92,7 @@ export const UserTable = ({ user, getU }) => {
                 <MDBTableBody>
                     {
                         user.length > 0 ? (
-                            user.map(({ _id, name, surname, username, email, phone, age, role, departament }, index) => {
+                            user.map(({ _id, name, surname, username, email,DPI, phone, age, role, departament }, index) => {
                                 return (
                                     <tr item key={index}>
                                         <td>
@@ -102,6 +103,7 @@ export const UserTable = ({ user, getU }) => {
                                             surname={surname}
                                             username={username}
                                             email={email}
+                                            DPI={DPI}
                                             phone={phone}
                                             age={age + ' Years'}
                                             role={role}
@@ -113,7 +115,7 @@ export const UserTable = ({ user, getU }) => {
                                             <MDBBtn className="btn" color="danger" onClick={() => deleteUser(_id)}>Ban</MDBBtn>
                                             <span>  </span>
                                             <Link to={`update/${_id}`}>
-                                                <MDBBtn className="btn" color="secondary">Edit</MDBBtn>
+                                                <MDBBtn className="btn" color='muted'>Edit</MDBBtn>
                                             </Link>
                                         </td>
                                     </tr>
