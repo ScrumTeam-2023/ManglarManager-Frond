@@ -69,19 +69,21 @@ export const UserUpdate = () => {
         email: document.getElementById('inputEmail').value,
         phone: document.getElementById('inputPhone').value,
         departament: document.getElementById('inputDep').value,
+        DPI: document.getElementById('inputDPI').value,
         role: document.getElementById('inputRole').value
       }
 
       const { data } = await axios.put(`http://localhost:3000/user/update/${id}`, upUser, { headers: headers })
       if (data.message) {
-        Swal.fire({
 
+        Swal.fire({
           title: `User Updated Succesfully!`,
           text: `User ${user.name} was Upated!`,
           icon: 'success',
           timer: 5000,
           showCloseButton: false
         })
+
       }
     } catch (error) {
       console.error(error)
@@ -138,7 +140,10 @@ export const UserUpdate = () => {
           </MDBRow>
 
           <MDBRow>
-
+            <MDBCol className='col-sm-5'>
+              <label htmlFor="inputDPI" className="form-label" style={{ width: 1000 }}>Personal Identification Document</label>
+              <input type="text" className="form-control mb-4" defaultValue={user.DPI} placeholder='3294 491321 0101' id="inputDPI" label='DPI' required minLength={8} />
+            </MDBCol>
 
             <MDBCol col='6'>
               <label htmlFor="inputEmail" className="form-label">Email Address</label>
@@ -152,25 +157,28 @@ export const UserUpdate = () => {
 
             <MDBCol col='6'>
               <label htmlFor="inputDep" className="form-label">Respective Department</label>
-              <select className="form-control" id="inputDep" defaultValue={user.departament?._id} >
+              <select className="form-control" id="inputDep" defaultValue={user.departs?._id} >
                 {
                   departs.map(({ _id, name }, i) => {
                     return (
+
                       <option key={i} value={_id}>{name}</option>
                     )
                   })
                 }
               </select>
             </MDBCol>
-            <p className="text-muted mb-1">Once you edit {user.name}'s account, it Can be Edited again.</p>
-          </MDBRow>
 
+
+
+          </MDBRow>
+          <p className="text-muted mb-1">Select {user.name}'s Role.</p>
           <MDBRow>
             <MDBCol md='2'>
               <label className="visually-hidden" for="inlineFormSelectPref">Role</label>
-              <select name='status' id="inputRole" className="form-control">
-                <option selected="selected">
-                  Select the Role
+              <select name='status' id="inputRole" className="form-control" defaultValue={user.role}>
+                <option selected="selected" disabled hidden>
+                  {user.role}
                 </option>
                 <option value="ADMIN">ADMIN</option>
                 <option value="EMPLOYEE">EMPLOYEE</option>
@@ -178,17 +186,26 @@ export const UserUpdate = () => {
             </MDBCol>
           </MDBRow>
           <br></br>
+
+          <MDBTypography note noteColor='info'>
+            <strong>Note:</strong>
+            <p></p>
+            Once you edit {user.name}'s account, it Can be Edited again.
+          </MDBTypography>
+
           <MDBModalFooter>
 
+
+
             <Link to='/panel/user'>
-              <MDBBtn color='dark' style={{margin: 10}}>Return to "Users"</MDBBtn>
+              <MDBBtn color='dark' style={{ margin: 10 }}>Return to "Users"</MDBBtn>
             </Link> <span>  </span>{"  "}
 
             <Link to='/panel/user'>
               <MDBBtn color='success' onClick={() => updateUser()}>Save Changes</MDBBtn>
             </Link>
 
-           
+
 
 
           </MDBModalFooter>

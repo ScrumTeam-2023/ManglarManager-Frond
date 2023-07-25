@@ -89,10 +89,10 @@ export const ProfileUpdate = () => {
 
   const editThenSend = () => {
     editProfile();
-    navigate('/panel/profile')
+    navigate('/login')
     Swal.fire({
       title: 'Profile updated Succesfully',
-      text: 'Your profile is now updated',
+      text: 'Your profile is now updated\n' + ' Please Log in Again',
       icon: 'success',
       timer: 5000,
       showCloseButton: false
@@ -143,8 +143,16 @@ export const ProfileUpdate = () => {
 
 
                 <MDBCardFooter background='transparent' border='info'>
+
+                  <MDBTypography note noteColor='warning'>
+                    <strong>Note:</strong>
+                    <p></p>
+                   After Changing your username you <strong>MUST</strong> Log in again
+                 
+                  </MDBTypography>
+
                   <Link to='/panel/profile'>
-                    <span><button className="btn btn-danger" style={{margin: 10}} >Cancel</button></span>
+                    <span><button className="btn btn-danger" style={{ margin: 10 }} >Cancel</button></span>
                   </Link>
                   <MDBBtn color='success' onClick={() => editThenSend()}>Update</MDBBtn>
                 </MDBCardFooter>

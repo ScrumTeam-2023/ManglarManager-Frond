@@ -78,7 +78,8 @@ export const UserPage = () => {
         password: document.getElementById('inputPass').value,
         email: document.getElementById('inputEmail').value,
         phone: document.getElementById('inputPhone').value,
-        departament: document.getElementById('inputDep').value
+        departament: document.getElementById('inputDep').value,
+        DPI: document.getElementById('inputDPI').value
       }
       const { data } = await axios.post(`http://localhost:3000/user/save`, user, { headers: headers })
       if (data) {
@@ -133,12 +134,21 @@ export const UserPage = () => {
       <MDBCard className="p-4">
         <p></p>
         <MDBTypography tag="h2"><MDBIcon fas icon="user-astronaut fa-2x " /><span>   </span>User Panel</MDBTypography>
+        <p>See all the users on it</p>
         <p></p>
-        <MDBBtn onClick={toggleUserA}>Create New User</MDBBtn>
+        <MDBBtn color='info' onClick={toggleUserA}>Create New User</MDBBtn>
+
       </MDBCard>
       <div></div>
-      <p>See all the users on it</p>
+
       <br></br>
+      <MDBTypography note noteColor='info'>
+        <strong>Note:</strong>
+        <p></p>
+        Users MUST ask you to change any kind of Sensitive data like <strong tag='em'>PID, Name, Email.</strong>
+        <p></p>
+        In case of being password you MUST contact your superior to ask him if you can gain access to the DB
+      </MDBTypography>
       <br></br>
       <UserTable user={users} getU={getUsers} />
 
@@ -183,31 +193,55 @@ export const UserPage = () => {
                 <MDBRow>
                   <MDBCol className='col-sm-5'>
                     <label htmlFor="inputPass" className="form-label" style={{ width: 500 }}>Password to Set</label>
+                    <div id='textExample1' className='form-text'>
+                      Insert the password to the User
+                    </div>
                     <input type="text" className="form-control mb-4" placeholder='MUST BRING TO THE USER WHEN ADVISED' id="inputPass" label='age' required />
                   </MDBCol>
+                  <MDBCol className='col-sm-5'>
+                    <label htmlFor="inputDPI" className="form-label" style={{ width: 1000 }}>Personal Identification Document</label>
+                    <div id='textExample1' className='form-text'>
+                      Must have Above 8 Characters to be Valid
+                    </div>
+                    <input type="text" className="form-control mb-4" placeholder='3294 491321 0101' id="inputDPI" label='dpi' required minLength={8} />
+
+                  </MDBCol>
                 </MDBRow>
+                <br></br>
 
                 <MDBRow>
 
 
                   <MDBCol col='6'>
                     <label htmlFor="inputEmail" className="form-label">Email Address</label>
+                    <div id='textExample1' className='form-text'>
+                      Insert the Email from the user
+                    </div>
                     <input type="text" className="form-control mb-4" id="inputEmail" label='email' required />
                   </MDBCol>
 
                   <MDBCol col='6'>
                     <label htmlFor="inputPhone" className="form-label">Phone Number</label>
-                    <input type="text" className="form-control mb-4" id="inputPhone" label='phone' required />
+                    <div id='textExample1' className='form-text'>
+                      Must have 9 characters
+                    </div>
+                    <input type="text" className="form-control mb-4" id="inputPhone" label='phone' required minLength={9} />
+                    <div id='textExample1' className='form-text'>
+                   Please add '-' after the first 4 Numbers
+                    </div>
                   </MDBCol>
 
                   <MDBCol col='6'>
                     <label htmlFor="inputDep" className="form-label">Respective Department</label>
+                    <div id='textExample1' className='form-text' >
+                      Select the Department
+                    </div>
                     <select className="form-control" id="inputDep" placeholder='Please Select one Department'>
                       {
                         departs.map(({ _id, name }, i) => {
                           return (
                             <>
-                            
+
                               <option key={i} value={_id}>{name}</option>
                             </>
 
@@ -227,12 +261,14 @@ export const UserPage = () => {
               <MDBBtn color='primary' onClick={toggleUserA}>
                 Close
               </MDBBtn>  <MDBBtn color='success' onClick={() => { addAndClose(); toggleUserA(); }}>Save</MDBBtn>
-              
-             
+
+
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
       </MDBModal>
+
+
     </>
 
 

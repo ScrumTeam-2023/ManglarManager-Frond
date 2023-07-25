@@ -148,16 +148,23 @@ export const TaskPage = () => {
             <MDBCard className="p-4">
               <p></p>
               <MDBTypography tag="h2"><MDBIcon fas icon="clipboard-list fa-2x " /><span>   </span>Task Panel</MDBTypography>
+              <p>See all Tasks ASSIGNED to them</p>
               <p></p>
-              <MDBBtn onClick={toggleAtask}>Assign new task</MDBBtn>
+
+              <MDBBtn color='info' onClick={toggleAtask}>Assign new task</MDBBtn>
             </MDBCard>
           </div>
           <span>  </span>
-
           <div className="left binding color">
-
+          <MDBTypography note noteColor='info'>
+        <strong>Note:</strong>
+        <p></p>
+        If a task is set to <strong tag='em'>COMPLETED</strong>
+        <p></p>
+       Must Read it to mark it
+      </MDBTypography>
             <br></br>
-            <p>Assing or Read your employees Works if its completed</p>
+           
           </div>
         </div></div>
       <TaskTable task={tasks} getT={getTask} />
@@ -197,7 +204,7 @@ export const TaskPage = () => {
                     <label htmlFor="inputUser" className="form-label" label='user'>Employee to Assign </label>
                     <select className="form-control" id="inputUser">
                       {
-                        users.map(({ _id, name, surname,departament }, i) => {
+                        users.map(({ _id, name, surname, departament }, i) => {
                           return (
                             <option key={i} value={_id}>{name} {surname}</option>
                           )

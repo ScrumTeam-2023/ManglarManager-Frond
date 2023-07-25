@@ -31,7 +31,7 @@ import { TaskProfileTable } from '../../Components/TaskComp/TaskProfileTable';
 export const ProfilePage = () => {
 
   const [profile, setProfile] = useState([])
-  const [departs, setDeparts] = useState([])
+  const [departs, setDeparts] = useState([{}])
   const [comp, setCompl] = useState({})
   const [tasks, setTasks] = useState({})
 
@@ -43,15 +43,22 @@ export const ProfilePage = () => {
   const toggleUpModal = () => setUpModal(!upModal)
 
   //DisableButton
-  const [buttonDisable, setButtonDisable] = useState(false)
+  const [buttonDisable, setButtonDisable] = useState(
+    localStorage.getItem('isButtonDisabled') === 'true' || false)
 
   const handleButtonClick = () => {
-    setButtonDisable(true)
-    setTimeout(() => {
-      setButtonDisable(false)
+    setButtonDisable(true);
 
-    }, 8000)
-  }
+    const cooldownTime = 20000;
+    const lastClickTime = Date.now();
+    localStorage.setItem('lastClickTime', lastClickTime.toString());
+    setTimeout(() => {
+      setButtonDisable(false);
+
+      localStorage.removeItem('lastClickTime');
+    }, cooldownTime);
+  };
+
 
   const { setLoggedIn, dataUser } = useContext(AuthContext)
   const navigate = useNavigate()
@@ -152,16 +159,29 @@ export const ProfilePage = () => {
   }
 
 
-
-
-
-
-
-
   useEffect(() => {
     getYourTasks();
     getProfile();
     getDeparts();
+
+    const lastClickTime = localStorage.getItem('lastClickTime');
+    if (lastClickTime) {
+      const currentTime = Date.now();
+      const cooldownTime = 20000;
+      const timeSinceLastClick = currentTime - parseInt(lastClickTime, 10);
+      if (timeSinceLastClick < cooldownTime) {
+        // If cooldown hasn't finished yet, disable the button
+        setButtonDisable(true);
+
+        // Start the remaining cooldown time
+        const remainingCooldownTime = cooldownTime - timeSinceLastClick;
+        setTimeout(() => {
+          setButtonDisable(false);
+          localStorage.removeItem('lastClickTime');
+        }, remainingCooldownTime);
+      }
+    }
+
   }, [])
 
   return (
@@ -313,8 +333,15 @@ export const ProfilePage = () => {
                           <MDBTypography tag="h6">Department</MDBTypography>
                           <MDBCardText className="text-muted">{profile.departament}</MDBCardText>
                         </MDBCol>
-                      </MDBRow>
 
+
+
+
+                      </MDBRow>
+                      <MDBCol size="6" className="mb-3">
+                        <MDBTypography tag="h6">PID</MDBTypography>
+                        <MDBCardText className="text-muted">{profile.DPI}</MDBCardText>
+                      </MDBCol>
 
 
                     </MDBCardBody>
@@ -367,7 +394,7 @@ export const ProfilePage = () => {
               <MDBIcon fas icon="headset" />
               <MDBModalTitle>Make an Complaint</MDBModalTitle>
               <MDBModalDialog>Here, You can give any complaint or incident inside your corporation...</MDBModalDialog>
-              
+
             </MDBModalHeader>
             <div className='modal-body p-4' style={{ alignContent: 'fixed' }}>
 

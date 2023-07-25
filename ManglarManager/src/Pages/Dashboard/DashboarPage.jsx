@@ -1,203 +1,167 @@
 import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../..'
-//import Swal from 'sweetalert2'
-import { Outlet, Link } from 'react-router-dom'
 import './panel.css'
-import logoManglar from '../../assets/logoManglar.png'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../index'
+import Swal from 'sweetalert2'
+import { Outlet, Link } from 'react-router-dom'
+import logo from '../../assets/mmLogo2.png'
 
-export const  DashboarPage = () => {
-    return (
-        <>
-               <header>
-        <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
-          <div className="position-sticky">
-            <div className="list-group list-group-flush mx-3 mt-4">
-              <a
-                href="login"
-                className="list-group-item list-group-item-action py-2 ripple"
-                aria-current="true"
-              >
-                <i className="fas fa-tachometer-alt fa-fw me-3 btn-danger"></i><span>Panel Admin</span>
-              </a>
 
-              <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                <i className="fas fa-tachometer-alt fa-fw me-3"></i><span>User</span>
-              </a>
-              <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                <i className="fas fa-lock fa-fw me-3"></i><span>Tareas</span></a
-              >
-              <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                <i className="fas fa-chart-line fa-fw me-3"></i><span>Quejas</span></a
-              >
-              <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                <i className="fas fa-chart-pie fa-fw me-3"></i><span>Comunicacion</span>
-              </a>
-              <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-                <i className="fas fa-chart-bar fa-fw me-3"></i><span>Departamento</span></a
-              >
-             
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+  MDBInput,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardHeader,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBTypography 
+}
+
+  from 'mdb-react-ui-kit';
+
+export const DashboardPage = () => {
+
+  //*---------------------------------LOGICA---------------------------------------------
+  const { setLoggedIn, dataUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [isAdmin, setIsAdmin] = useState(true)
+
+  const logOut = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you Really want to log Out?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#7f82ba',
+      confirmButtonText: 'Log me Out'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear()
+        setLoggedIn(false)
+        navigate('/login')
+      }
+    })
+  }
+
+  return (
+    <>
+      <div id="body">
+        <section id="sidebar">
+          <a className="brand ms-3">
+
+            <div className='d-flex flex-row mt-1'>
+              {/* <MDBIcon fas icon="piggy-bank fa-3x me-3" style={{ color: '#ffffff' }}/> */}
+              <MDBContainer fluid >
+                <img src={logo} className="img-fluid rounded" />
+              </MDBContainer>
             </div>
-          </div>
-        </nav>
 
-        <nav id="main-navbar" className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-          <div className="container-fluid">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i className="fas fa-bars"></i>
-            </button>
-
-            <a className="navbar-brand" href="#">
-              <img
-                src={logoManglar}
-                height="25"
-                alt="MDB Logo"
-                loading="lazy"
-              />
-            </a>
-
-            <form className="d-none d-md-flex input-group w-auto my-auto">
-              <input
-                autoComplete="off"
-                type="search"
-                className="form-control rounded"
-                placeholder='Search (ctrl + "/" to focus)'
-                style={{ minWidth: '225px' }}
-              />
-              <span className="input-group-text border-0"><i className="fas fa-search"></i></span>
-            </form>
-
-            <ul className="navbar-nav ms-auto d-flex flex-row">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="fas fa-bell"></i>
-                  <span className="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <a className="dropdown-item" href="#">Some news</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">Another news</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">Something else here</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link me-3 me-lg-0" href="#">
-                  <i className="fas fa-fill-drip"></i>
-                </a>
-              </li>
-              <li className="nav-item me-3 me-lg-0">
-                <a className="nav-link" href="#">
-                  <i className="fab fa-github"></i>
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-mdb-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="flag-united-kingdom flag m-0"></i>
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      <i className="flag-united-kingdom flag"></i>English
-                      <i className="fa fa-check text-success ms-2"></i>
-                    </a>
-                  </li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li>
-                    <a className="dropdown-item" href="#"><i className="flag-poland flag"></i>Polski</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#"><i className="flag-china flag"></i>中文</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#"><i className="flag-japan flag"></i>日本語</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                    <i className="flag-germany flag"></i>Deutsch
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#"><i className="flag-france flag"></i>Français</a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#"><i className="flag-spain flag"></i>Español</a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#"><i className="flag-russia flag"></i>Русский</a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#"><i className="flag-portugal flag"></i>Português</a>
-                </li>
-              </ul>
+          </a>
+          <ul className="side-menu top">
+            <li className="active">
+              <MDBTypography note noteColor='dark' className='mb-0'>
+                <strong>Main Panel</strong>
+              </MDBTypography>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                  className="rounded-circle"
-                  height="22"
-                  alt="Avatar"
-                  loading="lazy"
-                />
-              </a>
-              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+            {dataUser.role === "ADMIN" && (
+              <>
                 <li>
-                  <a className="dropdown-item" href="#">My profile</a>
+                  <Link to="user">
+                    <button>
+                      <MDBIcon fas icon="user-check" />
+                      <span>  </span>
+                      <span className="text">User</span>
+                    </button>
+                  </Link>
                 </li>
+
                 <li>
-                  <a className="dropdown-item" href="#">Settings</a>
+                  <Link to="task">
+                    <button>
+                      <MDBIcon fas icon="tasks" />
+                      <span>  </span>
+                      <span className="text">Tasks</span>
+                    </button>
+                  </Link>
                 </li>
+
                 <li>
-                  <a className="dropdown-item" href="#">Logout</a>
+                  <Link to="comp">
+                    <button>
+                      <MDBIcon fas icon="bullhorn" />
+                      <span>  </span>
+                      <span className="text">Complaints</span>
+                    </button>
+                  </Link>
                 </li>
-              </ul>
+              </>
+
+            )}
+
+            <li>
+              <Link to="dep">
+                <button>
+                  <MDBIcon fas icon="industry" />
+                  <span>  </span>
+                  <span className="text">Departaments</span>
+                </button>
+              </Link>
+            </li>
+
+
+
+
+
+
+          </ul>
+          <ul className="side-menu bottom">
+
+            <br></br>
+            <li>
+              <Link to='profile'>
+                <button>
+
+                  <span>
+                    <MDBIcon fas icon="user-alt" />
+                  </span>
+                  <span>  </span>
+                  <span className='text'>Profile</span>
+
+
+                </button>
+              </Link>
+
+            </li>
+            <li>
+              <button onClick={logOut}>
+                <span>
+
+                </span>
+                <MDBIcon fas icon="sign-out-alt" />
+                <span>  </span>
+
+                <span className="text">LogOut</span>
+              </button>
             </li>
           </ul>
-        </div>
-      </nav>
-    </header>
+        </section>
+        <section id="content">
+          <Outlet></Outlet>
+        </section>
+      </div>
 
-    <main style={{ marginTop: '58px' }}>
-      <div className="container pt-4"></div>
-    </main>
+    </>
+  )
 
-        
-         
-        </>
-        
-    )
 }

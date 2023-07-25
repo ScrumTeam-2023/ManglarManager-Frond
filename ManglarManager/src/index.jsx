@@ -2,8 +2,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import React, { useState, createContext, useEffect } from "react";
 import App from './App';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { DashboarPage } from "./Pages/Dashboard/DashboarPage";
+import { DashboardPage } from "../src/Pages/Dashboard/DashboarPage"
 import { NotFound } from "./Pages/NotFound"
 import { LoginPage } from "../src/LoginPage/LoginPage";
 import { UserPage } from './Pages/User/UserPage';
@@ -12,6 +11,10 @@ import { ProfilePage } from './Pages/Profile/ProfilePage';
 import { ProfileUpdate } from './Pages/Profile/ProfileUpdate';
 import { TaskPage } from './Pages/Tasque/TaskPage';
 import { TaskStatus } from './Pages/Tasque/TaskStatus';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { DepPage } from './Pages/Departaments/DepPage';
+import { DepUpdate } from './Pages/Departaments/DepUpdate';
+import { CompPage } from './Pages/Complaints/CompPage';
 
 
 export const AuthContext = createContext();
@@ -44,7 +47,7 @@ export const Index = () => {
     const routes = createBrowserRouter([
         {
             path: '/',
-            element: <App/>,
+            element: <App />,
             errorElement: <NotFound />,
 
             children: [
@@ -54,7 +57,7 @@ export const Index = () => {
                 },
                 {
                     path: '/panel',
-                    element: loggedIn ? <DashboarPage /> : <LoginPage />,
+                    element: loggedIn ? <DashboardPage /> : <LoginPage />,
                     children: [
                         {
                             // user
@@ -62,28 +65,43 @@ export const Index = () => {
                             element: <UserPage />,
                         },
                         {
-                            
+
                             path: 'user/update/:id',
-                            element: <UserUpdate/>
+                            element: <UserUpdate />
 
                         },
                         {
                             //profile
                             path: 'profile',
-                            element: <ProfilePage/>
+                            element: <ProfilePage />
                         },
                         {
                             path: 'profile/update/:id',
-                            element: <ProfileUpdate/>
+                            element: <ProfileUpdate />
                         },
                         {
                             //task,
-                            path:'task',
-                            element: <TaskPage/>
+                            path: 'task',
+                            element: <TaskPage />
                         },
                         {
                             path: 'profile/status/:id',
-                            element: <TaskStatus/>
+                            element: <TaskStatus />
+                        },
+                        //Departamento
+                        {
+                            path: 'dep',
+                            element: <DepPage/>
+                        },
+                        {
+                            path: 'dep/update/:id',
+                            element: <DepUpdate/>
+                        },
+                        //Quejas (Complaint)
+                        {
+                            path: 'comp',
+                            element: <CompPage/>
+
                         }
 
                     ]
