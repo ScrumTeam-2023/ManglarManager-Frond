@@ -15,7 +15,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DepPage } from './Pages/Departaments/DepPage';
 import { DepUpdate } from './Pages/Departaments/DepUpdate';
 import { CompPage } from './Pages/Complaints/CompPage';
-
+import { UserTask } from './Pages/UserTask/UserTask';
+import { UserTaskStatus } from './Pages/UserTask/UserTaskStatus';
 
 export const AuthContext = createContext();
 
@@ -87,6 +88,16 @@ export const Index = () => {
                         {
                             path: 'profile/status/:id',
                             element: <TaskStatus />
+                        },
+                        {
+                            path: 'userTask',
+                            element: <UserTask/>
+
+                        },
+                        {
+                            path: 'userTask/status/:id',
+                            element: <UserTaskStatus/>
+
                         },
                         //Departamento
                         {
