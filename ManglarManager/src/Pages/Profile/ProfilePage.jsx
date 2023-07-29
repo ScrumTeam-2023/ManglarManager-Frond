@@ -22,7 +22,8 @@ import {
   MDBModalBody,
   MDBModalFooter,
   MDBInput,
-  MDBTextArea
+  MDBTextArea,
+  MDBTableHead
 
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
@@ -202,15 +203,15 @@ export const ProfilePage = () => {
                   {buttonDisable == true && (<p>You have to wait a Certain amount of time to use "Make a Complaiment" again</p>)}
 
 
-                  <MDBBtn className='btn-md btn-warning' onClick={complaintVerify} disabled={buttonDisable}><MDBIcon fas icon="headset ms-1" /> Make a Complainment...</MDBBtn>
+                  <MDBBtn className='btn-md ' rounded style={{backgroundColor: '#3d3687'}} onClick={complaintVerify} disabled={buttonDisable}><MDBIcon fas icon="headset ms-1" /> Make a Complainment...</MDBBtn>
 
                   <span>  </span>
 
                   <Link to={`update/${profile._id}`}>
-                    <button className='btn btn-warning'>
+                    <MDBBtn className='btn btn-primary' rounded>
                       <MDBIcon fas icon="cogs" />
                       <span>Edit Profile</span>
-                    </button>
+                    </MDBBtn>
                   </Link>
 
 
@@ -335,10 +336,11 @@ export const ProfilePage = () => {
                             <MDBCol size="6" className="mb-3">
                               <MDBTypography tag="h6">Department</MDBTypography>
                               <MDBCardText className="text-muted">{profile.departament?.name}</MDBCardText>
+                              <MDBCardText className="text-muted">{profile.departament?._id}</MDBCardText>
                             </MDBCol>
                           </>
                         )}
-                        
+
                       </MDBRow>
                       <MDBCol size="6" className="mb-3">
                         <MDBTypography tag="h6">PID</MDBTypography>
@@ -361,8 +363,20 @@ export const ProfilePage = () => {
         </MDBContainer>
         {dataUser.role !== "ADMIN" && (
           <>
+
+
+
+
             <div className='d-flex p-2 justify-content-center' style={{ backgroundColor: '#B3C6CF' }}>
               <MDBCard  >
+                <MDBTypography note noteColor='info'>
+                  <MDBTableHead>
+                    Task to do By:
+                  </MDBTableHead>
+                  <strong tag='em'>  {profile.name} {profile.surname}</strong>!
+
+                </MDBTypography>
+
                 <TaskProfileTable task={tasks} getT={getYourTasks} />
               </MDBCard>
             </div>
@@ -377,7 +391,8 @@ export const ProfilePage = () => {
           <MDBModalContent>
             <MDBModalHeader className=' bg-danger text-white'>
               <MDBIcon fas icon="headset" />
-              <MDBModalTitle>Make an Complaint</MDBModalTitle>
+              <p>      </p>
+              <MDBModalTitle>!  Make an Complaint</MDBModalTitle>
               <MDBModalDialog>Here, You can give any complaint or incident inside your corporation...</MDBModalDialog>
 
             </MDBModalHeader>
