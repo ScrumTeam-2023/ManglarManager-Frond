@@ -14,10 +14,12 @@ import {
   MDBCard,
   MDBInput,
   MDBIcon,
+  MDBTypography,
   MDBCheckbox,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
+  MDBCardHeader,
 
 
 }
@@ -86,9 +88,9 @@ export const LoginPage = () => {
 
                 <MDBCol col='6' className="mb-5">
                   <div className="d-flex flex-column ms-5">
-                    
+
                     <div className="text-center">
-                    <h4 className="text-muted">Welcome to..</h4>
+                      <h4 className="text-muted">Welcome to..</h4>
                       <img src={logo} className="img-fluid rounded" style={{ width: 500 }} />
                       <br></br>
                       <p></p>
@@ -144,9 +146,18 @@ export const LoginPage = () => {
           <br></br>
         </MDBCard>
 
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-          style={{ width: '100px' }} alt="logo" />
+        <br></br>
+
       </div>
+      <MDBCard>
+        <MDBCardBody>
+          <MDBCardHeader>Copyright © 2023 Manglar Manager. All rights reserved.</MDBCardHeader>
+          <MDBTypography blockquote className='mb-1'>
+
+          </MDBTypography>
+        </MDBCardBody>
+      </MDBCard>
+
 
     </>
 

@@ -31,7 +31,7 @@ import { TaskProfileTable } from '../../Components/TaskComp/TaskProfileTable';
 export const ProfilePage = () => {
 
   const [profile, setProfile] = useState([])
-  const [departs, setDeparts] = useState([{}])
+  const [departs, setDeparts] = useState([])
   const [comp, setCompl] = useState({})
   const [tasks, setTasks] = useState({})
 
@@ -188,6 +188,8 @@ export const ProfilePage = () => {
     <>
 
       <section className="vh-100" style={{ backgroundColor: '#B3C6CF' }}>
+
+
         <MDBContainer className="py-1 h-75">
 
           <MDBRow className="justify-content-center align-items-center h-100">
@@ -328,15 +330,15 @@ export const ProfilePage = () => {
                           </>
                         )}
 
-
-                        <MDBCol size="6" className="mb-3">
-                          <MDBTypography tag="h6">Department</MDBTypography>
-                          <MDBCardText className="text-muted">{profile.departament}</MDBCardText>
-                        </MDBCol>
-
-
-
-
+                        {dataUser.role !== "ADMIN" && (
+                          <>
+                            <MDBCol size="6" className="mb-3">
+                              <MDBTypography tag="h6">Department</MDBTypography>
+                              <MDBCardText className="text-muted">{profile.departament?.name}</MDBCardText>
+                            </MDBCol>
+                          </>
+                        )}
+                        
                       </MDBRow>
                       <MDBCol size="6" className="mb-3">
                         <MDBTypography tag="h6">PID</MDBTypography>
@@ -349,41 +351,24 @@ export const ProfilePage = () => {
 
                 </MDBRow>
                 <br></br>
-                <div style={{ padding: 22 }}>
-                  <MDBCard>
 
-                    {dataUser.role !== "ADMIN" && (
-                      <>
-                        <MDBTypography style={{ alignItems: 'flex-end' }}> <span></span>  Task to do by: {profile.username}</MDBTypography>
-                      </>
-                    )}
-                  </MDBCard>
-                </div>
+
 
               </MDBCard>
+
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-
         {dataUser.role !== "ADMIN" && (
           <>
-            <div className='d-flex p-2 justify-content-center'>
-              <MDBCard >
+            <div className='d-flex p-2 justify-content-center' style={{ backgroundColor: '#B3C6CF' }}>
+              <MDBCard  >
                 <TaskProfileTable task={tasks} getT={getYourTasks} />
               </MDBCard>
             </div>
 
           </>
         )}
-
-
-
-
-
-
-
-
-
       </section>
 
       {/* Complaint Modal */}
