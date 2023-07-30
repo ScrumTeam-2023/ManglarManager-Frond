@@ -103,7 +103,8 @@ export const UserTask = () => {
                             <p></p>
                             <MDBTypography tag="h2"><MDBIcon fas icon="clipboard-check fa-2x " /><span>  </span>Todo Tasks</MDBTypography>
                             <p>See Your Tasks <strong> {profile.name} {profile.surname}</strong></p>
-                            <p></p>
+                            <p>Your Current Departament is: <strong>{profile.departament?.name}</strong></p>
+                            <h6 className='text-muted'>{profile.departament?._id}</h6>
                         </MDBCard>
                     </div>
                     <span>  </span>

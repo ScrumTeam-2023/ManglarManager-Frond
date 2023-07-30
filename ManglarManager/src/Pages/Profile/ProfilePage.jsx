@@ -340,8 +340,8 @@ export const ProfilePage = () => {
                           <>
                             <MDBCol size="6" className="mb-3">
                               <MDBTypography tag="h6">Department</MDBTypography>
-                              <MDBCardText className="text-muted">{profile.departament?.name}</MDBCardText>
-                              <MDBCardText className="text-muted">{profile.departament?._id}</MDBCardText>
+                              <MDBCardText className="text-muted"><strong>{profile.departament?.name}</strong></MDBCardText>
+                              <h6 className="text-muted">{profile.departament?._id}</h6>
                             </MDBCol>
                           </>
                         )}

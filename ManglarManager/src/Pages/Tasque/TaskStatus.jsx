@@ -23,7 +23,8 @@ import {
   MDBInput,
   MDBTextArea,
   MDBCardTitle,
-  MDBCardFooter
+  MDBCardFooter,
+  MDBCardHeader
 
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
@@ -123,8 +124,13 @@ export const TaskStatus = () => {
             <MDBCard shadow='0' border='info' background='white' className='mb-3'>
               <MDBCardBody>
                 <MDBCardTitle>Edit Task Status</MDBCardTitle>
+                <MDBCardHeader>
+                  <p>You are about to set: <strong>{tasks.desc}</strong></p>
+
+                </MDBCardHeader>
                 <MDBCardText>
-                  You are about to change your assigned tast STATUS, this means that you already finished it and you MUST send it to your Administrator.
+
+                  You are about to change your assigned task STATUS, this means that you already finished it and you MUST send it to your Administrator.
                 </MDBCardText>
 
                 <label className="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -141,7 +147,7 @@ export const TaskStatus = () => {
                   <p className="text-muted mb-1">COMPLETE: When you are sure of your task been already done</p>
 
                   <Link to='/panel/profile'>
-                    <MDBBtn className='me-1' color='danger'style={{margin: 10}}>Supress</MDBBtn>
+                    <MDBBtn className='me-1' color='danger' style={{ margin: 10 }}>Supress</MDBBtn>
                   </Link>
 
                   <span></span>
