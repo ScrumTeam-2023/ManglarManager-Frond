@@ -311,7 +311,7 @@ export const ProfilePage = () => {
                       <hr className="mt-0 mb-4" />
                       <MDBRow className="pt-1">
 
-                        
+
                         <MDBCol size="6" className="mb-3">
                           <MDBTypography tag="h6">PID</MDBTypography>
                           <MDBCardText className="text-muted">{profile.DPI}</MDBCardText>
@@ -414,6 +414,8 @@ export const ProfilePage = () => {
 
                   <MDBCol col='6'>
                     <MDBModalBody>Department</MDBModalBody>
+
+
                     <label htmlFor="inputDep" className="form-label">Respective Department</label>
                     <select className="form-control" id="inputDep">
                       {
@@ -424,11 +426,16 @@ export const ProfilePage = () => {
                         })
                       }
                     </select>
+                    <br></br>
+                    Your Department:
+                    <MDBCardText className="text-black"><strong>{profile.departament?.name}</strong></MDBCardText>
+                    <p className='text-muted'>Must match with your current Departament</p>
                   </MDBCol>
+
 
                 </MDBRow>
                 <MDBRow>
-                  <MDBCol col='6' >
+                  <MDBCol col='2' >
                     <MDBModalBody>Description</MDBModalBody>
                     <p className="text-muted mb-1">Type about the incident or inconvinience</p>
                     <MDBTextArea label='Message' id='inputDesc' placeholder='Maximum of 200 text' rows={5} maxLength="200" minLength='5' />
@@ -443,6 +450,8 @@ export const ProfilePage = () => {
             </div>
 
             <MDBModalFooter>
+
+
 
               <br></br>
               <MDBBtn color='secondary' onClick={() => { toggleComp() }}>
