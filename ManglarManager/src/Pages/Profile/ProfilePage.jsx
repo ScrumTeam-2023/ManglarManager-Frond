@@ -203,7 +203,7 @@ export const ProfilePage = () => {
                   {buttonDisable == true && (<p>You have to wait a Certain amount of time to use "Make a Complaiment" again</p>)}
 
 
-                  <MDBBtn className='btn-md ' rounded style={{backgroundColor: '#3d3687'}} onClick={complaintVerify} disabled={buttonDisable}><MDBIcon fas icon="headset ms-1" /> Make a Complainment...</MDBBtn>
+                  <MDBBtn className='btn-md ' rounded style={{ backgroundColor: '#3d3687' }} onClick={complaintVerify} disabled={buttonDisable}><MDBIcon fas icon="headset ms-1" /> Make a Complainment...</MDBBtn>
 
                   <span>  </span>
 
@@ -311,6 +311,11 @@ export const ProfilePage = () => {
                       <hr className="mt-0 mb-4" />
                       <MDBRow className="pt-1">
 
+                        
+                        <MDBCol size="6" className="mb-3">
+                          <MDBTypography tag="h6">PID</MDBTypography>
+                          <MDBCardText className="text-muted">{profile.DPI}</MDBCardText>
+                        </MDBCol>
                         {dataUser.role === "ADMIN" && (
                           <>
                             <MDBCol size="6" className="mb-3">
@@ -341,11 +346,10 @@ export const ProfilePage = () => {
                           </>
                         )}
 
+
+
                       </MDBRow>
-                      <MDBCol size="6" className="mb-3">
-                        <MDBTypography tag="h6">PID</MDBTypography>
-                        <MDBCardText className="text-muted">{profile.DPI}</MDBCardText>
-                      </MDBCol>
+
 
 
                     </MDBCardBody>
