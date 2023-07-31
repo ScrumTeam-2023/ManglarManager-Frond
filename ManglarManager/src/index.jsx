@@ -19,6 +19,8 @@ import { UserTask } from './Pages/UserTask/UserTask';
 import { UserTaskStatus } from './Pages/UserTask/UserTaskStatus';
 import { HomePage } from './Pages/HomePage/HomePage';
 import { PanelMain } from './Pages/PanelMain/PanelMain';
+import { ContactListPage } from './Pages/ContacListPage/ContactListPage';
+import { ChatPage } from './Pages/ChatPage/ChatPage';
 
 export const AuthContext = createContext();
 
@@ -124,8 +126,16 @@ export const Index = () => {
                             path: 'comp',
                             element: <CompPage />
 
+                        },
+                        //CHAT
+                        {
+                            path: 'list',
+                            element: <ContactListPage/>
+                        },
+                        {
+                            path: 'list/chat/:id',
+                            element: <ChatPage/>
                         }
-
                     ]
                 }
             ]
