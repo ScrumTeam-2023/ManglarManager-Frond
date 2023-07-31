@@ -57,6 +57,7 @@ export const TaskPage = () => {
       const { data } = await axios.get('http://localhost:3000/task/get', { headers: headers })
       if (data.gettasks) {
         setTasks(data.gettasks)
+        console.log(data)
 
       }
     } catch (err) {

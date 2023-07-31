@@ -22,7 +22,7 @@ import {
   MDBCardHeader,
   MDBListGroup,
   MDBListGroupItem,
-  MDBTypography 
+  MDBTypography
 }
 
   from 'mdb-react-ui-kit';
@@ -69,7 +69,7 @@ export const DashboardPage = () => {
           </a>
           <ul className="side-menu top">
             <li className="active">
-              <MDBTypography note noteColor='dark' className='mb-0'>
+              <MDBTypography note noteColor='dark'  className='mb-0 text-white'>
                 <strong>Main Panel</strong>
               </MDBTypography>
             </li>
@@ -105,9 +105,41 @@ export const DashboardPage = () => {
                     </button>
                   </Link>
                 </li>
+
+                <li>
+                  <Link to="dep">
+                    <button>
+                      <MDBIcon fas icon="industry" />
+                      <span>  </span>
+                      <span className="text">Departaments</span>
+                    </button>
+                  </Link>
+                </li>
+
               </>
 
             )}
+
+
+
+            {dataUser.role !== "ADMIN" && (
+              <>
+                <li>
+                  <Link to="userTask">
+                    <button>
+                      <MDBIcon fas icon="clipboard-check" />
+                      <span>  </span>
+                      <span className="text">!  Your Tasks</span>
+                    </button>
+                  </Link>
+                </li>
+              </>
+            )}
+
+
+
+
+
 
             <li>
               <Link to="dep">

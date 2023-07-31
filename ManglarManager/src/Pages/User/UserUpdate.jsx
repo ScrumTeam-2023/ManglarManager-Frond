@@ -39,6 +39,7 @@ export const UserUpdate = () => {
       const { data } = await axios.get(`http://localhost:3000/dep/getDeps`, { headers: headers })
       if (data.department) {
         setDeparts(data.department)
+
       }
     } catch (err) {
       console.error(err)
@@ -50,6 +51,8 @@ export const UserUpdate = () => {
     try {
       const { data } = await axios.get(`http://localhost:3000/user/getOne/${id}`, { headers: headers })
       if (data.findUser) {
+        document.getElementById('inputDep').value = data.findUser.departament._id
+        console.log(data)
         setUser(data.findUser)
       }
     } catch (err) {

@@ -15,6 +15,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DepPage } from './Pages/Departaments/DepPage';
 import { DepUpdate } from './Pages/Departaments/DepUpdate';
 import { CompPage } from './Pages/Complaints/CompPage';
+import { UserTask } from './Pages/UserTask/UserTask';
+import { UserTaskStatus } from './Pages/UserTask/UserTaskStatus';
+import { HomePage } from './Pages/HomePage/HomePage';
+import { PanelMain } from './Pages/PanelMain/PanelMain';
 import { ContactListPage } from './Pages/ContacListPage/ContactListPage';
 import { ChatPage } from './Pages/ChatPage/ChatPage';
 
@@ -53,6 +57,11 @@ export const Index = () => {
 
             children: [
                 {
+                    path: '/',
+                    element: <HomePage />
+
+                },
+                {
                     path: '/login',
                     element: <LoginPage></LoginPage>
                 },
@@ -60,6 +69,10 @@ export const Index = () => {
                     path: '/panel',
                     element: loggedIn ? <DashboardPage /> : <LoginPage />,
                     children: [
+                        {
+                            path: 'panel',
+                            element: <PanelMain/>
+                        },
                         {
                             // user
                             path: 'user',
@@ -89,19 +102,29 @@ export const Index = () => {
                             path: 'profile/status/:id',
                             element: <TaskStatus />
                         },
+                        {
+                            path: 'userTask',
+                            element: <UserTask />
+
+                        },
+                        {
+                            path: 'userTask/status/:id',
+                            element: <UserTaskStatus />
+
+                        },
                         //Departamento
                         {
                             path: 'dep',
-                            element: <DepPage/>
+                            element: <DepPage />
                         },
                         {
                             path: 'dep/update/:id',
-                            element: <DepUpdate/>
+                            element: <DepUpdate />
                         },
                         //Quejas (Complaint)
                         {
                             path: 'comp',
-                            element: <CompPage/>
+                            element: <CompPage />
 
                         },
                         //CHAT
