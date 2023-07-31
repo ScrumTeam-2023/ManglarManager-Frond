@@ -29,7 +29,6 @@ export const UserPage = () => {
 
   const [users, setUsers] = useState([])
   const [departs, setDeparts] = useState([{}])
-
   //modal 1
   const [userA, setUserA] = useState(false)
   const toggleUserA = () => setUserA(!userA)

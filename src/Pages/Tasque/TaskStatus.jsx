@@ -136,7 +136,7 @@ export const TaskStatus = () => {
 
                 <label className="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select name='status' className='form-control' id="inputStatus">
-                  <option selected="selected">
+                  <option selected="selected" hidden>
                     Select the Status to Updates
                   </option>
                   <option value="INCOMPLETE">INCOMPLETE</option>

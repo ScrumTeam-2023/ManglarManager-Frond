@@ -68,11 +68,38 @@ export const DashboardPage = () => {
 
           </a>
           <ul className="side-menu top">
-            <li className="active">
-              <MDBTypography note noteColor='dark'  className='mb-0 text-white'>
-                <strong>Main Panel</strong>
-              </MDBTypography>
-            </li>
+
+            {dataUser.role === "ADMIN" && (
+              <>
+                <li className="active">
+                  <MDBTypography note noteColor='info'>
+                    <strong>ADMIN PANEL</strong>
+                    <p><h4 className='text-black'> Welcome</h4></p>
+                    <p>{dataUser.name} {dataUser.surname}</p>
+
+                    <strong><h4 className='text-black'>ROLE:</h4></strong>
+                    <p>{dataUser.role}</p>
+                  </MDBTypography>
+                </li>
+              </>
+            )}
+
+            {dataUser.role !== "ADMIN" && (
+              <>
+                <li className="active">
+                  <MDBTypography note noteColor='warning'>
+                    <strong>EMPLOYEE PANEL</strong>
+                    <p><h4 className='text-black'> Welcome</h4></p>
+                    <p>{dataUser.name} {dataUser.surname}</p>
+
+                    <strong><h4 className='text-black'>ROLE:</h4></strong>
+                    <p>{dataUser.role}</p>
+                  </MDBTypography>
+                </li>
+              </>
+            )}
+
+
 
             {dataUser.role === "ADMIN" && (
               <>
@@ -81,7 +108,7 @@ export const DashboardPage = () => {
                     <button>
                       <MDBIcon fas icon="user-check" />
                       <span>  </span>
-                      <span className="text">User</span>
+                      <span className="text">USERS</span>
                     </button>
                   </Link>
                 </li>
@@ -91,7 +118,7 @@ export const DashboardPage = () => {
                     <button>
                       <MDBIcon fas icon="tasks" />
                       <span>  </span>
-                      <span className="text">Tasks</span>
+                      <span className="text">ASSIGNMENT</span>
                     </button>
                   </Link>
                 </li>
@@ -101,7 +128,7 @@ export const DashboardPage = () => {
                     <button>
                       <MDBIcon fas icon="bullhorn" />
                       <span>  </span>
-                      <span className="text">Complaints</span>
+                      <span className="text">COMPLAINTS</span>
                     </button>
                   </Link>
                 </li>
@@ -111,7 +138,7 @@ export const DashboardPage = () => {
                     <button>
                       <MDBIcon fas icon="industry" />
                       <span>  </span>
-                      <span className="text">Departaments</span>
+                      <span className="text">DEPARTAMENTS</span>
                     </button>
                   </Link>
                 </li>
@@ -119,30 +146,30 @@ export const DashboardPage = () => {
                 <li>
                   <Link to="grafica">
                     <button>
-                    <i class="fas fa-chart-line"></i><span>  </span>
-                      <span className="text">Activities</span>
+                      <i class="fas fa-chart-line"></i><span>  </span>
+                      <span className="text">ACTIVITY</span>
                     </button>
                   </Link>
                 </li>
-              
+
 
               </>
 
             )}
-                  
-                 {(dataUser.role === "ADMIN" || dataUser.role === "EMPLOYEE") && (
-                  <li>
-                  <Link to="list">
-                    <button>
-                    <i class="fas fa-comment-dots"></i> 
-                    <span>  </span>
-                      <span className="text">CHAT</span>
-                    </button>
-                  </Link>
-                </li>
-                  )}
 
-                
+            {(dataUser.role === "ADMIN" || dataUser.role === "EMPLOYEE") && (
+              <li>
+                <Link to="list">
+                  <button>
+                    <i class="fas fa-comment-dots"></i>
+                    <span>  </span>
+                    <span className="text">CHAT</span>
+                  </button>
+                </Link>
+              </li>
+            )}
+
+
 
             {dataUser.role !== "ADMIN" && (
               <>
@@ -167,6 +194,7 @@ export const DashboardPage = () => {
           <ul className="side-menu bottom">
 
             <br></br>
+
             <li>
               <Link to='profile'>
                 <button>
