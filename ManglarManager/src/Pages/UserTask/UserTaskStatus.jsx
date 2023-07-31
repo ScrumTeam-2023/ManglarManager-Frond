@@ -123,9 +123,11 @@ export const UserTaskStatus = () => {
 
             <MDBCard shadow='0' border='info' background='white' className='mb-3'>
               <MDBCardBody>
-                <MDBCardTitle>Edit Task Status</MDBCardTitle>
+                <MDBCardTitle className='text-black'>Edit Task Status</MDBCardTitle>
                 <MDBCardHeader>
                   <p>You are about to set: <strong>{tasks.desc}</strong></p>
+                  <span> current Status: <strong>{tasks.status}</strong></span>
+
 
                 </MDBCardHeader>
 

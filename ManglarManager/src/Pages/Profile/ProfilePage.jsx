@@ -217,6 +217,8 @@ export const ProfilePage = () => {
 
                 </>
               )}
+              <br></br>
+              <br></br>
               <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
 
                 <MDBRow className="g-0">
@@ -232,7 +234,7 @@ export const ProfilePage = () => {
                         style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
                         <br></br>
                         <MDBTypography tag="h5">Profile</MDBTypography>
-                        <MDBCardText>Manglar Employee:</MDBCardText>
+                        <MDBCardText className='text-white'>Manglar Employee:</MDBCardText>
                         <MDBTypography tag="h5">{profile.name} {profile.surname}</MDBTypography>
                         <br></br>
 
@@ -252,7 +254,7 @@ export const ProfilePage = () => {
                         <MDBTypography tag="h5">Profile</MDBTypography>
                         {dataUser.role === "ADMIN" && (
                           <>
-                            <MDBCardText>Manglar Superior :</MDBCardText>
+                            <MDBCardText className='text-white'>Manglar Superior :</MDBCardText>
 
                           </>
                         )}
@@ -405,6 +407,10 @@ export const ProfilePage = () => {
 
               <form>
                 <MDBRow>
+                  <p className='text-black'>Your Department:</p>  
+                  <MDBCardText className="text-black"><strong>{profile.departament?.name}</strong></MDBCardText>
+                  <p className='text-muted'>Must match with your current Departament</p>
+
                   <MDBCol col='6'>
                     <MDBModalBody>Title</MDBModalBody>
                     <p className="text-muted mb-1">Type what happend or the main Situation</p>
@@ -427,9 +433,7 @@ export const ProfilePage = () => {
                       }
                     </select>
                     <br></br>
-                    Your Department:
-                    <MDBCardText className="text-black"><strong>{profile.departament?.name}</strong></MDBCardText>
-                    <p className='text-muted'>Must match with your current Departament</p>
+
                   </MDBCol>
 
 

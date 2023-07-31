@@ -69,7 +69,7 @@ export const DashboardPage = () => {
           </a>
           <ul className="side-menu top">
             <li className="active">
-              <MDBTypography note noteColor='dark' className='mb-0'>
+              <MDBTypography note noteColor='dark'  className='mb-0 text-white'>
                 <strong>Main Panel</strong>
               </MDBTypography>
             </li>
