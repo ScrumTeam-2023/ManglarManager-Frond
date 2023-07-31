@@ -15,7 +15,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DepPage } from './Pages/Departaments/DepPage';
 import { DepUpdate } from './Pages/Departaments/DepUpdate';
 import { CompPage } from './Pages/Complaints/CompPage';
-
+import { ContactListPage } from './Pages/ContacListPage/ContactListPage';
+import { ChatPage } from './Pages/ChatPage/ChatPage';
 
 export const AuthContext = createContext();
 
@@ -102,8 +103,16 @@ export const Index = () => {
                             path: 'comp',
                             element: <CompPage/>
 
+                        },
+                        //CHAT
+                        {
+                            path: 'list',
+                            element: <ContactListPage/>
+                        },
+                        {
+                            path: 'list/chat/:id',
+                            element: <ChatPage/>
                         }
-
                     ]
                 }
             ]

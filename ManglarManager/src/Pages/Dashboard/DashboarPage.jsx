@@ -117,13 +117,17 @@ export const DashboardPage = () => {
                   <span className="text">Departaments</span>
                 </button>
               </Link>
+            </li>  
+
+            <li>
+              <Link to="list">
+                <button>
+                <i class="fas fa-comment-dots"></i>
+                  <span>  </span>
+                  <span className="text">Chat</span>
+                </button>
+              </Link>
             </li>
-
-
-
-
-
-
           </ul>
           <ul className="side-menu bottom">
 
