@@ -39,7 +39,7 @@ export const UserUpdate = () => {
       const { data } = await axios.get(`http://localhost:3000/dep/getDeps`, { headers: headers })
       if (data.department) {
         setDeparts(data.department)
-       
+
       }
     } catch (err) {
       console.error(err)

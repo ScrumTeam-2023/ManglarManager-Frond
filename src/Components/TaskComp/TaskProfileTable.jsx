@@ -109,7 +109,7 @@ export const TaskProfileTable = ({ task, getT }) => {
                                 </tr>
                             )
 
-                        }) : (<h1><MDBIcon fas icon="check 3x" />You are up Date!</h1>)
+                        }) : (<h1 className='text-black'><MDBIcon fas icon="check 3x" />You are up Date!</h1>)
 
                     }
 

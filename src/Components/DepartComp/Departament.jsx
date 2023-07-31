@@ -1,4 +1,4 @@
-export const Departament = ({id,name,desc}) =>{
+export const Departament = ({name,desc}) =>{
     return(
         <>
         <td>{name}</td>

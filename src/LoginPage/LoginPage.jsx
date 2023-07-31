@@ -80,6 +80,7 @@ export const LoginPage = () => {
       <div>
 
         <MDBCard className='justify-content-center'>
+
           <MDBCardBody>
 
             <MDBContainer className="my-5 gradient-form d-flex align-items-sm-center">
@@ -115,7 +116,10 @@ export const LoginPage = () => {
                       <span></span>
                       <br></br>
                       <a className="text-muted">You must Talk to your Organization Superior</a>
+
+
                     </div>
+
 
 
 
@@ -127,13 +131,19 @@ export const LoginPage = () => {
                   <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
 
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <h4 class="mb-4">Our Main Goal:</h4>
-                      <p class="small mb-0">Our job is to make the experience of Working at your company more
-                        efficient and also Friendly Experience, You and Your boss will be working and monitoring your
-                        Progress in the Enterprise.
+                      <h4 className="mb-4">Our Main Goal:</h4>
+                      <p className="small mb-0 text-white">At our company, our foremost mission is to enhance the overall experience of working for you. We are committed to making your time here both more efficient and delightfully friendly. As we value the significance of your contributions, we strive to create an environment where you can thrive both professionally and personally.
+
+                        Collaboration lies at the heart of our work culture. You will find yourself working closely with your boss and colleagues, fostering a sense of teamwork and mutual support. We firmly believe that by joining forces, we can achieve remarkable results together.
+
+                        Monitoring your progress and growth within the enterprise is essential to us. Through constructive feedback and continuous evaluation, we ensure that you have the necessary tools and support to excel in your role. Your success is a reflection of our commitment to nurturing talent and fostering professional development.
+
+                        But it's not all about work!
+
+                        Thank you for being a part of our dynamic and inclusive company. Together, let's create an exciting future filled with growth, friendship, and accomplishment!
                       </p>
                     </div>
-
+                    <MDBBtn style={{backgroundColor: '#4C3F59'}} className='btn' href='/'>Return to Home</MDBBtn>
                   </div>
 
                 </MDBCol>
@@ -151,7 +161,11 @@ export const LoginPage = () => {
       </div>
       <MDBCard>
         <MDBCardBody>
-          <MDBCardHeader>Copyright © 2023 Manglar Manager. All rights reserved.</MDBCardHeader>
+          <MDBCardHeader>Copyright © 2023 Manglar Manager. All rights reserved.
+            <span></span>
+            <p></p>
+
+          </MDBCardHeader>
           <MDBTypography blockquote className='mb-1'>
 
           </MDBTypography>

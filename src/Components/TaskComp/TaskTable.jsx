@@ -41,6 +41,10 @@ export const TaskTable = ({ task, getT }) => {
         'Authorization': localStorage.getItem('token')
     }
 
+
+
+
+
     const markCompleted = async (id) => {
         try {
             Swal.fire({
@@ -114,7 +118,7 @@ export const TaskTable = ({ task, getT }) => {
                                     </tr>
                                 )
 
-                            }) : (<h1><MDBIcon fas icon="check 3x" />They are on Date!</h1>)
+                            }) : (<h1 className='text-black'><MDBIcon fas icon="check 3x" />They are on Date!</h1>)
                     }
 
 

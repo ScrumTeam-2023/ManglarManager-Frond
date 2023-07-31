@@ -1,6 +1,5 @@
 import React from 'react'
-
-import {useState, useEffect, useContext} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Departament } from './Departament.jsx';
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -33,8 +32,8 @@ import {
 }
     from 'mdb-react-ui-kit';
 
-export const DepartamentTable = ({depart, getD}) =>{
-    
+export const DepartamentTable = ({ departs, getD }) => {
+
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token')
@@ -51,12 +50,11 @@ export const DepartamentTable = ({depart, getD}) =>{
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes'
             }).then((result) => {
-
                 if (result.isConfirmed) {
-                    const { data } = axios.delete(`http://localhost:3000/dep/deleteDep/${id}`)
+                    const { data } = axios.delete(`http://localhost:3000/dep/deleteDep/${id}`, { headers: headers })
                     Swal.fire(
                         'Erradicated!',
-                        'This task has been read!.',
+                        'This Departament has been Vanquished!!.',
                         'success'
                     )
                     getD()
@@ -83,33 +81,33 @@ export const DepartamentTable = ({depart, getD}) =>{
                 </MDBTableHead>
                 <MDBTableBody>
                     {
-                       /* Departament.length > 0 ? (*/
-                            depart.map(({_id, name, desc}, index)=>{
-                                return(
-                                    <tr item key={index}>
-                                        <td>
-                                            <MDBIcon fas icon/>
+                        /* Departament.length > 0 ? (*/
+                        departs.map(({ _id, name, desc }, index) => {
+                            return (
+                                <tr item key={index}>
+                                    <td>
+                                        <MDBIcon fas icon />
                                     </td>
-                                    <Departament 
+                                    <Departament
                                         name={name}
                                         desc={desc}>
                                     </Departament>
 
                                     <td>
-                                        <MDBBtn className="btn" color="danger" onClick={()=> deleteDep(_id)}>Delete</MDBBtn>
+                                    <MDBBtn className="btn" color="danger" onClick={() => deleteDep(_id)}>Delete</MDBBtn>
                                         <span></span>
                                         <Link to={`update/${_id}`}>
                                             <MDBBtn className="btn" color='muted'>Edit</MDBBtn>
                                         </Link>
-                                        
+
                                     </td>
 
-                                    </tr>
-                                )
-                            })
-                       /* ) :(
-                            <h1><MDBIcon fas icon="quiestion-circule x-3"/>There is no departament</h1>
-                        )*/
+                                </tr>
+                            )
+                        })
+                        /* ) :(
+                             <h1><MDBIcon fas icon="quiestion-circule x-3"/>There is no departament</h1>
+                         )*/
                     }
                 </MDBTableBody>
             </MDBTable>

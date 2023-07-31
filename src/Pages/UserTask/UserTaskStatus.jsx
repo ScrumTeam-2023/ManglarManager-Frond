@@ -29,7 +29,7 @@ import {
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
 
-export const TaskStatus = () => {
+export const UserTaskStatus = () => {
   const [tasks, setTasks] = useState([])
   const { id } = useParams();
   const navigate = useNavigate();
@@ -92,7 +92,7 @@ export const TaskStatus = () => {
 
   const statusSend = () => {
     upStatus();
-    navigate('/panel/profile')
+    navigate('/panel/userTask')
     Swal.fire({
       title: `Task Succesfully Updated`,
       text: `Task Status was Set! `,
@@ -128,11 +128,13 @@ export const TaskStatus = () => {
                   <p>You are about to set: <strong>{tasks.desc}</strong></p>
                   <span> current Status: <strong>{tasks.status}</strong></span>
 
-                </MDBCardHeader>
-                <MDBCardText>
 
+                </MDBCardHeader>
+
+                <MDBCardText>
                   You are about to change your assigned task STATUS, this means that you already finished it and you MUST send it to your Administrator.
                 </MDBCardText>
+
 
                 <label className="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select name='status' className='form-control' id="inputStatus">
@@ -147,7 +149,7 @@ export const TaskStatus = () => {
                   <p className="text-muted mb-1">INCOMPLETE 'Default': default and when your task isn't done yet</p>
                   <p className="text-muted mb-1">COMPLETE: When you are sure of your task been already done</p>
 
-                  <Link to='/panel/profile'>
+                  <Link to='/panel/userTask'>
                     <MDBBtn className='me-1' color='danger' style={{ margin: 10 }}>Supress</MDBBtn>
                   </Link>
 

@@ -22,6 +22,7 @@ import {
   MDBModalTitle,
   MDBModalBody,
   MDBModalFooter,
+  MDBCardText
 }
   from 'mdb-react-ui-kit';
 
@@ -37,7 +38,7 @@ export const DepUpdate = () => {
 
   const getSingleDeparts = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/dep/getODep/${id}`)
+      const { data } = await axios.get(`http://localhost:3000/dep/getODep/${id}`,{headers:headers})
       if (data.findDep) {
         setDeparts(data.findDep)
       }
@@ -53,7 +54,7 @@ export const DepUpdate = () => {
         desc: document.getElementById('inputDesc').value
       }
 
-      const { data } = await axios.put(`http://localhost:3000/dep/edit/${id}`, upDeparts)
+      const { data } = await axios.put(`http://localhost:3000/dep/edit/${id}`, upDeparts, { headers: headers })
       if (data.message) {
 
         Swal.fire({
@@ -78,33 +79,71 @@ export const DepUpdate = () => {
       <div className='modal-body p-4'>
         <MDBCard className="p-4">
           <p></p>
-          <MDBTypography tag="h2"><MDBIcon fas icon /></MDBTypography>
+          <MDBTypography tag="h2"><MDBIcon fas icon="building fa-2x " /><span>   </span>Edit Departament</MDBTypography>
           <p></p>
-          <p className='text-muted mb-1'>You are about to edit {departament.name}'s acount</p>
+          <p className='text-muted mb-1'>You are about to edit {departament.name}</p>
         </MDBCard>
 
         <br></br>
 
         <form>
-          <MDBCol col='6'>
-            <label htmlFor="inputName" className="form-label">Name</label>
-            <input type="text" className="form-control mb-4" defaultValue={departament.name} id="inputName" label='name' required />
-          </MDBCol>
 
-          <MDBCol col='6'>
-            <label htmlFor="inputDesc" className="form-label">Desc</label>
-            <input type="text" className="form-control mb-4" defaultValue={departament.desc} id="inputDesc" required />
-          </MDBCol>
+
+          {departament.name !== "ON HOLD" && (
+            <>
+              <MDBCol col='6'>
+                <label htmlFor="inputName" className="form-label">Name</label>
+                <input type="text" className="form-control mb-4" defaultValue={departament.name} id="inputName" label='name' required />
+              </MDBCol>
+
+              <MDBCol col='6'>
+                <label htmlFor="inputDesc" className="form-label">Desc</label>
+                <input type="text" className="form-control mb-4" defaultValue={departament.desc} id="inputDesc" required />
+              </MDBCol>
+
+            </>
+          )}
+
+          {departament.name === "ON HOLD" && (
+            <>
+              <MDBTypography note noteColor='danger'>
+                <strong>WARNING:</strong> You are Trying to Update {departament.name} which
+                is a crucial Department to make our users wait in the line while we asign them.
+                you have to be very Careful with it. If this one is Changed or Deleted there will be
+                <strong>UNFORSEEN CONSEQUENCES λ</strong>
+              </MDBTypography>
+
+            </>
+          )}
+
+
 
           <MDBModalFooter>
+            {departament.name === "ON HOLD" && (
+              <>
+                <Link to='/panel/dep'>
+                  <MDBBtn color='dark' style={{ margin: 10 }}>Wont Happen again...</MDBBtn>
+                </Link><span> </span>{"  "}
+              </>
+            )}
 
-            <Link to='/panel/dep'>
-              <MDBBtn color='dark' style={{ margin: 10 }}>Return to "Departaments"</MDBBtn>
-            </Link><span> </span>{"  "}
+            {departament.name !== "ON HOLD" && (
+              <>
+                <Link to='/panel/dep'>
+                  <MDBBtn color='dark' style={{ margin: 10 }}>Return to "Departaments"</MDBBtn>
+                </Link><span> </span>{"  "}
 
-            <Link to='/panel/dep'>
-              <MDBBtn color='success' onClick={() => DepUpdate()}>Save Changes</MDBBtn>
-            </Link>
+                <Link to='/panel/dep'>
+                  <MDBBtn color='success' onClick={() => DepUpdate()}>Save Changes</MDBBtn>
+                </Link>
+
+
+              </>
+            )}
+
+
+
+
           </MDBModalFooter>
         </form>
       </div>
