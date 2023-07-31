@@ -100,7 +100,7 @@ export const DepPage = () => {
             <div className='left binding color'>
                 <MDBCard className="p-4">
                     <p></p>
-                    <MDBTypography variant='h1'>Welcome to:</MDBTypography>
+                    
                     <MDBTypography tag="h2"><MDBIcon fas icon="industry fa-2x " /><span>   </span>Departaments Panel</MDBTypography>
                     <p>See all The Departaments</p>
                     <p></p>
