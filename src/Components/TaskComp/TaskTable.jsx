@@ -99,7 +99,7 @@ export const TaskTable = ({ task, getT }) => {
                                 return (
                                     <tr item key={index}>
                                         <td>
-                                            <h1><MDBIcon fas icon="tasks fa-1x" /></h1>
+                                            <h1 className='text-black'><MDBIcon fas icon="tasks fa-1x" /></h1>
                                         </td>
                                         <Task
                                             desc={desc}
